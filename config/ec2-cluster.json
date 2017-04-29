@@ -45,7 +45,7 @@
                         "Fn::Join": ["", 
                             [
                                 "#!/bin/bash\n",
-                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                                "apt-get update && apt-get install -y python-pip python-dev python-virtualenv"
                             ]
                         ]
                     }
@@ -83,7 +83,7 @@
                         "Fn::Join": ["", 
                             [
                                 "#!/bin/bash\n",
-                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                                "apt-get update && apt-get install -y python-pip python-dev python-virtualenv"
                             ]
                         ]
                     }
@@ -121,7 +121,7 @@
                         "Fn::Join": ["", 
                             [
                                 "#!/bin/bash\n",
-                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                                "apt-get update && apt-get install -y python-pip python-dev python-virtualenv"
                             ]
                         ]
                     }
@@ -159,7 +159,7 @@
                         "Fn::Join": ["", 
                             [
                                 "#!/bin/bash\n",
-                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                                "apt-get update && apt-get install -y python-pip python-dev python-virtualenv"
                             ]
                         ]
                     }
