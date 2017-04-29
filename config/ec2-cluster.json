@@ -1,0 +1,166 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Four EC2 instances running ubuntu 16.04 LTS",
+    
+    "Parameters": {
+        "KeyName": {
+            "Description": "Name of existing EC2 keypair",
+            "Type": "String"
+        },
+        "SecurityGroup": {
+            "Description": "Security group for the instance",
+            "Type": "String"
+        }
+    },
+
+    "Resources": {
+        "EC2Node0": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "SecurityGroups": [ 
+                    { 
+                        "Ref": "SecurityGroup"
+                    }
+                ],
+                "ImageId": "ami-80861296",
+                "KeyName": { "Ref": "KeyName" },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sdm",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "true",
+                            "VolumeSize": "10"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdk",
+                        "NoDevice": {}
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": ["", 
+                            [
+                                "#!/bin/bash\n",
+                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "EC2Node1": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "SecurityGroups": [ 
+                    { 
+                        "Ref": "SecurityGroup"
+                    }
+                ],
+                "ImageId": "ami-80861296",
+                "KeyName": { "Ref": "KeyName" },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sdm",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "true",
+                            "VolumeSize": "10"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdk",
+                        "NoDevice": {}
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": ["", 
+                            [
+                                "#!/bin/bash\n",
+                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "EC2Node2": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "SecurityGroups": [ 
+                    { 
+                        "Ref": "SecurityGroup"
+                    }
+                ],
+                "ImageId": "ami-80861296",
+                "KeyName": { "Ref": "KeyName" },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sdm",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "true",
+                            "VolumeSize": "10"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdk",
+                        "NoDevice": {}
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": ["", 
+                            [
+                                "#!/bin/bash\n",
+                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "EC2Node3": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "SecurityGroups": [ 
+                    { 
+                        "Ref": "SecurityGroup"
+                    }
+                ],
+                "ImageId": "ami-80861296",
+                "KeyName": { "Ref": "KeyName" },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sdm",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "true",
+                            "VolumeSize": "10"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdk",
+                        "NoDevice": {}
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": ["", 
+                            [
+                                "#!/bin/bash\n",
+                                "apt-get update && apt-get install python-pip python-dev python-virtualenv"
+                            ]
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

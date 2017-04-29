@@ -1,0 +1,6 @@
+#!/bin/bash
+
+aws cloudformation create-stack --stack-name ec2-cluster \
+    --template-body file://ec2-cluster.json \
+    --parameters \
+    ParameterKey=KeyName,ParameterValue=cs498-dist-tf ParameterKey=SecurityGroup,ParameterValue=cs498-dist-tf
