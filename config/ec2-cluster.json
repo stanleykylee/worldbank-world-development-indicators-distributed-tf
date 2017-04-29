@@ -23,6 +23,7 @@
                     }
                 ],
                 "ImageId": "ami-80861296",
+                "InstanceType": "c4.xlarge",
                 "KeyName": { "Ref": "KeyName" },
                 "BlockDeviceMappings": [
                     {
@@ -60,6 +61,7 @@
                     }
                 ],
                 "ImageId": "ami-80861296",
+                "InstanceType": "c4.xlarge",
                 "KeyName": { "Ref": "KeyName" },
                 "BlockDeviceMappings": [
                     {
@@ -97,6 +99,7 @@
                     }
                 ],
                 "ImageId": "ami-80861296",
+                "InstanceType": "c4.xlarge",
                 "KeyName": { "Ref": "KeyName" },
                 "BlockDeviceMappings": [
                     {
@@ -134,6 +137,7 @@
                     }
                 ],
                 "ImageId": "ami-80861296",
+                "InstanceType": "c4.xlarge",
                 "KeyName": { "Ref": "KeyName" },
                 "BlockDeviceMappings": [
                     {
