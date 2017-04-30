@@ -50,7 +50,15 @@
                             [
                                 "#!/bin/bash\n",
                                 "apt-get update && apt-get install -y ",
-                                "libcupti-dev python-pip python-dev python-virtualenv"
+                                "libcupti-dev python-pip python-dev python-virtualenv\n",
+                                "wget 'http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb'",
+                                "dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb\n",
+                                "apt-get update && apt-get install -y cuda\n",
+                                "echo 'export PATH=/usr/local/cuda-8.0.61/bin' >> ~/.bashrc\n",
+                                "echo 'export LD_LIBRARY_PATH=/usr/local/cuda-8.0.61/lib64' >> ~/.bashrc\n",
+                                "virtualenv --system-site-packages ~/tf-env\n",
+                                "cd ~/tf-env && source ./bin/activate\n",
+                                "pip install --upgrade tensorflow-gpu"
                             ]
                         ]
                     }
@@ -89,7 +97,15 @@
                             [
                                 "#!/bin/bash\n",
                                 "apt-get update && apt-get install -y ",
-                                "libcupti-dev python-pip python-dev python-virtualenv"
+                                "libcupti-dev python-pip python-dev python-virtualenv\n",
+                                "wget 'http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb'",
+                                "dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb\n",
+                                "apt-get update && apt-get install -y cuda\n",
+                                "echo 'export PATH=/usr/local/cuda-8.0.61/bin' >> ~/.bashrc\n",
+                                "echo 'export LD_LIBRARY_PATH=/usr/local/cuda-8.0.61/lib64' >> ~/.bashrc\n",
+                                "virtualenv --system-site-packages ~/tf-env\n",
+                                "cd ~/tf-env && source ./bin/activate\n",
+                                "pip install --upgrade tensorflow-gpu"
                             ]
                         ]
                     }
@@ -128,7 +144,15 @@
                             [
                                 "#!/bin/bash\n",
                                 "apt-get update && apt-get install -y ",
-                                "libcupti-dev python-pip python-dev python-virtualenv"
+                                "libcupti-dev python-pip python-dev python-virtualenv\n",
+                                "wget 'http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb'",
+                                "dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb\n",
+                                "apt-get update && apt-get install -y cuda\n",
+                                "echo 'export PATH=/usr/local/cuda-8.0.61/bin' >> ~/.bashrc\n",
+                                "echo 'export LD_LIBRARY_PATH=/usr/local/cuda-8.0.61/lib64' >> ~/.bashrc\n",
+                                "virtualenv --system-site-packages ~/tf-env\n",
+                                "cd ~/tf-env && source ./bin/activate\n",
+                                "pip install --upgrade tensorflow-gpu"
                             ]
                         ]
                     }
@@ -167,7 +191,15 @@
                             [
                                 "#!/bin/bash\n",
                                 "apt-get update && apt-get install -y ",
-                                "libcupti-dev python-pip python-dev python-virtualenv"
+                                "libcupti-dev python-pip python-dev python-virtualenv\n",
+                                "wget 'http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb'",
+                                "dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb\n",
+                                "apt-get update && apt-get install -y cuda\n",
+                                "echo 'export PATH=/usr/local/cuda-8.0.61/bin' >> ~/.bashrc\n",
+                                "echo 'export LD_LIBRARY_PATH=/usr/local/cuda-8.0.61/lib64' >> ~/.bashrc\n",
+                                "virtualenv --system-site-packages ~/tf-env\n",
+                                "cd ~/tf-env && source ./bin/activate\n",
+                                "pip install --upgrade tensorflow-gpu"
                             ]
                         ]
                     }
