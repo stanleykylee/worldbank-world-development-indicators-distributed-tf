@@ -12,14 +12,16 @@ def make_country_dict():
         country[i] = {}
     return country
 
-# for every given year for a given country, pull out 
-# the desired indicators and write them as a line (csv)
-def flush(dict): 
+# extract selected indicators and write time series entries of them to csv
+def flush(dict):
     out_str = ''
     for entry in dict:
+        if len(dict[entry]) < len(selected_indicators):
+            continue
         out_str = ''
         for key in dict[entry]:
             out_str += dict[entry][key] + ','
+        out_str = out_str[:-1] + '\n'
         with open(OUTPUT_FILE, 'a') as f:
             f.write(out_str)
             f.flush()
