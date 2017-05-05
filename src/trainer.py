@@ -105,7 +105,7 @@ def main(_):
                 cluster=cluster)):
 
             # Build model...
-            global_step = tf.contrib.framework.get_or_create_global_step()
+	    global_step = tf.contrib.framework.get_or_create_global_step()
 
             # ==========
             #   MODEL
@@ -160,14 +160,13 @@ def main(_):
             init = tf.global_variables_initializer()
 
         # The StopAtStepHook handles stopping after running given steps.
-        hooks=[tf.train.StopAtStepHook(last_step=1000000)]
+        hooks=[tf.train.StopAtStepHook(last_step=1)]
 
         # The MonitoredTrainingSession takes care of session initialization,
         # restoring from a checkpoint, saving to a checkpoint, and closing when done
         # or an error occurs.
         with tf.train.MonitoredTrainingSession(master=server.target,
                                                is_chief=(FLAGS.task_index == 0),
-                                               checkpoint_dir="/tmp/train_logs",
                                                hooks=hooks) as mon_sess:
             while not mon_sess.should_stop():
                 # Run a training step asynchronously.
