@@ -4,7 +4,7 @@ import json
 # configuration
 DATA_FILE = 'WDI_Data.csv'
 INDICATORS_FILE = 'indicators.config'
-OUTPUT_FILE = 'time-series.csv'
+OUTPUT_FILE = 'population-data.csv.csv'
 
 def make_country_dict():
     country = {} 

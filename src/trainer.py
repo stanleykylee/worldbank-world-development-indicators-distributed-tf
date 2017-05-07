@@ -105,7 +105,7 @@ def main(_):
                 cluster=cluster)):
 
             # Build model...
-	    global_step = tf.contrib.framework.get_or_create_global_step()
+            global_step = tf.contrib.framework.get_or_create_global_step()
 
             # ==========
             #   MODEL
@@ -160,7 +160,7 @@ def main(_):
             init = tf.global_variables_initializer()
 
         # The StopAtStepHook handles stopping after running given steps.
-        hooks=[tf.train.StopAtStepHook(last_step=1)]
+        hooks=[tf.train.StopAtStepHook(last_step=1000000)]
 
         # The MonitoredTrainingSession takes care of session initialization,
         # restoring from a checkpoint, saving to a checkpoint, and closing when done
@@ -168,31 +168,40 @@ def main(_):
         with tf.train.MonitoredTrainingSession(master=server.target,
                                                is_chief=(FLAGS.task_index == 0),
                                                hooks=hooks) as mon_sess:
-            while not mon_sess.should_stop():
-                # Run a training step asynchronously.
-                # See `tf.train.SyncReplicasOptimizer` for additional details on how to
-                # perform *synchronous* training.
-                # mon_sess.run handles AbortedError in case of preempted PS.
-                mon_sess.run(init)
-                step = 1
-                # Keep training until reach max iterations
-                while step * batch_size < training_iters:
-                    batch_x, batch_y, batch_seqlen = trainset.next(batch_size)
-                    # Run optimization op (backprop)
-                    mon_sess.run(optimizer, feed_dict={x: batch_x, y: batch_y,
-                                                       seqlen: batch_seqlen})
-                    if step % display_step == 0:
-                        # Calculate batch accuracy
-                        acc = mon_sess.run(accuracy, feed_dict={x: batch_x, y: batch_y,
-                                                                seqlen: batch_seqlen})
-                        # Calculate batch loss
-                        loss = mon_sess.run(cost, feed_dict={x: batch_x, y: batch_y,
-                                                             seqlen: batch_seqlen})
-                        print("Iter " + str(step*batch_size) + ", Minibatch Loss= " +
-                              "{:.6f}".format(loss) + ", Training Accuracy= " +
-                              "{:.5f}".format(acc))
-                    step += 1
-                print("Optimization Finished!")
+            # Run a training step asynchronously.
+            # See `tf.train.SyncReplicasOptimizer` for additional details on how to
+            # perform *synchronous* training.
+            # mon_sess.run handles AbortedError in case of preempted PS.
+            mon_sess.run(init)
+            step = 1
+            # Keep training until reach max iterations
+            while step * batch_size < training_iters:
+                if mon_sess.should_stop():
+                    break
+                batch_x, batch_y, batch_seqlen = trainset.next(batch_size)
+                # Run optimization op (backprop)
+                mon_sess.run(optimizer, feed_dict={x: batch_x, y: batch_y,
+                                                   seqlen: batch_seqlen})
+                if step % display_step == 0:
+                    # Calculate batch accuracy
+                    acc = mon_sess.run(accuracy, feed_dict={x: batch_x, y: batch_y,
+                                                            seqlen: batch_seqlen})
+                    # Calculate batch loss
+                    loss = mon_sess.run(cost, feed_dict={x: batch_x, y: batch_y,
+                                                         seqlen: batch_seqlen})
+                    print("Iter " + str(step*batch_size) + ", Minibatch Loss= " +
+                          "{:.6f}".format(loss) + ", Training Accuracy= " +
+                          "{:.5f}".format(acc))
+                step += 1
+            print("Optimization Finished!")
+
+            # Calculate accuracy
+            test_data = testset.data
+            test_label = testset.labels
+            test_seqlen = testset.seqlen
+            print("Testing Accuracy:",
+                  mon_sess.run(accuracy, feed_dict={x: test_data, y: test_label,
+                                                    seqlen: test_seqlen}))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
